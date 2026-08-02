@@ -1,5 +1,5 @@
 from database import get_db
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import RedirectResponse
 from schemas import StatsResponse, URLrequest, URLResponse
 from services import url_service
@@ -15,6 +15,11 @@ def api_root() -> dict[str, object]:
         "message": "URL shortener API",
         "endpoints": ["/api/shorten", "/api/stats/{short_code}"],
     }
+
+
+@router.options("/shorten", include_in_schema=False)
+def preflight_shorten() -> Response:
+    return Response(status_code=200)
 
 
 @router.post("/shorten", response_model=URLResponse, status_code=201)

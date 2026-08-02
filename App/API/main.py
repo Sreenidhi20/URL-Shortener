@@ -3,6 +3,7 @@ from pathlib import Path
 
 from database import init_db
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from routes import health, sql_health, url
 
 API_DIR = Path(__file__).resolve().parent
@@ -18,6 +19,15 @@ app = FastAPI(
     title="URL Shortener API",
     description="A minimal, production-shaped URL shortener built with FastAPI + SQL Server.",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1)(:\d+)?",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

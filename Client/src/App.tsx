@@ -1,8 +1,11 @@
+import Dashboard from "./features/dashboard/dashboard";
+import Statistics from "./features/statistics/statistics";
+
 function App() {
   return (
     <>
-      <h2>Welcome to URL shortener App</h2>
-      <p>Please wait while we are building our application</p>
+      <Dashboard />
+      <Statistics />
     </>
   );
 }
