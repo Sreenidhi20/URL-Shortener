@@ -1,5 +1,5 @@
-from fastapi import APIRouter
 from database import get_connection
+from fastapi import APIRouter
 
 router = APIRouter(
     prefix="/sql_health",
